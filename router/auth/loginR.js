@@ -2,6 +2,7 @@ const express =require('express')
 const bcrypt=require('bcryptjs')
 const User=require('../../model/signupModel');  
 const jwt =require('jsonwebtoken')
+const auth=require('../../middleware/auth');
 const loginFunction=async(req,res)=>{
 try{
 
