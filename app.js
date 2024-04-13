@@ -11,6 +11,8 @@ const Logout=require('./router/auth/logoutR')
 const Chat=require('./router/chat/chatUploderR');
 const ChatWithUs=require('./router/chat/chatWithUsR');
 const DoubtAssistant=require('./router/chat/doubtAssistanceR');
+const Feedback=require('./router/chat/feedbackR');
+const Sales=require('./router/chat/SalesTeamR');
 app.use(cookieParser());
 const dbconnection=require('./server');
 dotenv.config({path:'./config.env'});
@@ -32,6 +34,8 @@ app.use('/api/v1',Logout);
 app.use('/api/v1',Chat);
 app.use('/api/v1',ChatWithUs);
 app.use('/api/v1',DoubtAssistant);
+app.use('/api/v1',Feedback);
+app.use('/api/v1',Sales);
 app.listen(process.env.PORT,()=>{
     console.log(`http://localhost:${process.env.PORT}`)
     console.log(`server is working on ${process.env.PORT} `)
