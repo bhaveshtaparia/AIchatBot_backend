@@ -4,12 +4,13 @@ const dotenv=require('dotenv');
 const cookieParser=require('cookie-parser')
 const bodyParser=require('body-parser');
 const app=express();
+const fileUpload = require('express-fileupload');
 const Signup=require('./router/auth/signupR')
 const Login=require('./router/auth/loginR')
 const Logout=require('./router/auth/logoutR')
 const Chat=require('./router/chat/chatUploderR');
 const ChatWithUs=require('./router/chat/chatWithUsR');
-const fileUpload = require('express-fileupload');
+const DoubtAssistant=require('./router/chat/doubtAssistanceR');
 app.use(cookieParser());
 const dbconnection=require('./server');
 dotenv.config({path:'./config.env'});
@@ -30,6 +31,7 @@ app.use('/api/v1',Login);
 app.use('/api/v1',Logout);
 app.use('/api/v1',Chat);
 app.use('/api/v1',ChatWithUs);
+app.use('/api/v1',DoubtAssistant);
 app.listen(process.env.PORT,()=>{
     console.log(`http://localhost:${process.env.PORT}`)
     console.log(`server is working on ${process.env.PORT} `)

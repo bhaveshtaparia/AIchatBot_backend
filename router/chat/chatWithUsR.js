@@ -5,6 +5,7 @@ const { auth } = require('../../middleware/auth');
 const {authorizeRole}=require('../../middleware/role')
 const router=express.Router();
 const natural = require('natural'); // Import the Natural library for NLP
+const Doubt = require('../../model/DoubtAssistantModel');
 const tokenizer = new natural.WordTokenizer();
 async function findMatchingQuestion(userQuery) {
     // Tokenize the user query for better result
@@ -56,6 +57,15 @@ const chatWithUs = async (req, res) => {
 
         // If no matching question found, return an appropriate response
         if (!matchingQuestion) {
+            // this is for doubt assistance
+            const existingDoubt = await Doubt.findOne({ question:userQuery });   
+            if (existingDoubt) {
+            }else{
+                const newDoubt = new Doubt({
+                    question:userQuery,
+                });
+                await newDoubt.save();
+            }
             return res.json({ answer: 'Sorry, I couldn\'t find an answer to that question.' });
         }
 
