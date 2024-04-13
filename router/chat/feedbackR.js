@@ -72,5 +72,5 @@ const downloadPerfomance=async(req,res)=>{
         return res.status(500).json({ message: 'Internal server error.' });
     }
 }
-router.route('/download/perfomance').post(auth,authorizeRole('admin'),pushFeedback);
+router.route('/download/perfomance').get(auth,authorizeRole('admin'),downloadPerfomance);
 module.exports = router;
