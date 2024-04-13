@@ -6,6 +6,7 @@ const {authorizeRole}=require('../../middleware/role')
 const router=express.Router();
 const natural = require('natural'); // Import the Natural library for NLP
 const Doubt = require('../../model/DoubtAssistantModel');
+const Sales=require('../../model/SalesDataModel');
 const tokenizer = new natural.WordTokenizer();
 async function findMatchingQuestion(userQuery) {
     // Tokenize the user query for better result
@@ -51,6 +52,16 @@ const chatWithUs = async (req, res) => {
         if (!userQuery) {
             return res.status(400).json({ error: 'Missing user question' });
         }
+
+
+          // adding data in sales Team  database
+          const salesData = new Sales({
+            email:req.user.email, // Set the type of data
+            question: userQuery // Set the question
+        });
+        await salesData.save()
+
+
 
         // Find the most accurate matching question using NLP techniques
         const matchingQuestion = await findMatchingQuestion(userQuery);
