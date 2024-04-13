@@ -4,12 +4,12 @@ const Signup=require('../../model/signupModel');
 const register=async(req,res)=>{
 
     try{
-        if(req.body.password!==req.body.cpassword){
-            res.json({
-               "message":"password doesnot Match"
-            })
-            return ;
-        }
+        // if(req.body.password!==req.body.cpassword){
+        //     res.status(404).json({
+        //        "message":"password doesnot Match"
+        //     })
+        //     return ;
+        // }
         const user=await Signup.create(req.body);
         // console.log(signup._id)
         const payload={
