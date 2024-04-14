@@ -23,7 +23,7 @@ dbconnection();
 app.get('/',(req,res)=>{
     res.send("working")
 })
-console.log(process.env.WEBLINK);
+// console.log(process.env.WEBLINK);
 app.use(cors({
     origin:process.env.WEBLINK,
     credentials: true,
