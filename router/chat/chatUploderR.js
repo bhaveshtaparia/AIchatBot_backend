@@ -15,7 +15,7 @@ const chatUploder=async(req,res)=>{
     try{
  // Convert CSV to JSON
  const jsonArray = await csvtojson().fromString(csvFile.data.toString());
-console.log(jsonArray);
+// console.log(jsonArray);
  // Populate MongoDB with data from JSON
  await Chat.deleteMany({}); // Clear existing data
  await Chat.insertMany(jsonArray);
