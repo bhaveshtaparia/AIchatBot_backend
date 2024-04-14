@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Sales = require('../../model/SalesDataModel');
-const { createObjectCsvWriter } = require('csv-writer');
+// const { createObjectCsvWriter } = require('csv-writer');
 const { authorizeRole } = require('../../middleware/role');
 const { auth } = require('../../middleware/auth');
 const jsonexport = require('jsonexport');
