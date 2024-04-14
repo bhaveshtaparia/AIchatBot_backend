@@ -21,6 +21,8 @@ const register=async(req,res)=>{
         const options={
             expires:new Date(Date.now()+process.env.EXPIREC*24*60*60*1000),
             httpOnly:true,
+            sameSite: 'none',
+            secure:true
         }
         res.status(201).cookie('token',token,options).json({
             user,
